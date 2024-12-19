@@ -1,24 +1,14 @@
-def skobki(s):
-    stack = []
-    pairs = {')': '(', ']': '[', '}': '{'}
+def palindrome(s):
+    left, right = 0, len(s) - 1
+    while left < right:
+        if s[left] != s[right]:
+            return False
+        left += 1
+        right -= 1
+    return True
 
-    for char in s:
-        if char in pairs.values():
-            stack.append(char)
-        elif char in pairs.keys():
-            if not stack or stack.pop() != pairs[char]:
-                return False
-
-    return len(stack) == 0
-
-test = [
-    "(({[]}))",  # True
-    "{(})",      # False
-    '([])[[]]',  # True
-    ")())[[]]",   # False
-    "(())[[]]",   # True
-    '([])'       
-]
-
-for case in test:
-    print(f"{case}: {skobki(case)}")
+input_line = input("Строка: ")
+if palindrome(input_line):
+    print("Палиндром")
+else:
+    print("Не палиндром")
