@@ -1,5 +1,7 @@
-first_list = [1,3,5,7]
-second_list = [2,4,6,8]
-deque = (first_list + second_list)
-deque.sort()
-print(deque)
+from collections import deque
+
+list1 = [1, 3, 5, 7]
+list2 = [2, 4, 6, 8]
+
+result = deque(sorted(list1 + list2))
+print(result)  # deque([1, 2, 3, 4, 5, 6, 7, 8])
