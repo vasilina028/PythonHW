@@ -1,13 +1,22 @@
-a = input()
-d = {')': '(',
-     ']': '[',
-     '}': '{'}
-d1 = []
-for i in a:
-    if i in d.values():
-        d1.append(i)
-    elif i in d.keys():
-        if d1 == [] or d[i] != d1.pop():
-            print('False')
-            break
-print('True')
+def skobki(s):
+    stack = []
+    pairs = {')': '(', ']': '[', '}': '{'}
+    for char in s:
+        if char in pairs.values():
+            stack.append(char)
+        elif char in pairs.keys():
+            if not stack or stack.pop() != pairs[char]:
+                return False
+    return len(stack) == 0
+     
+test = [
+    "(({[]}))",  # True
+    "{(})",      # False
+    '([])[[]]',  # True
+    ")())[[]]",   # False
+    "(())[[]]",   # True
+    '([])'
+]
+
+for case in test:
+    print(f"{case}: {skobki(case)}")
